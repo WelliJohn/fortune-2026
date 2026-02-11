@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "fortune-app/frontend/package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "fortune-app/backend/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "fortune-app/frontend/$1"
+    }
+  ]
+}

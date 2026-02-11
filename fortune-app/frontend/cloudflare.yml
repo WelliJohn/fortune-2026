@@ -1,0 +1,2 @@
+web:
+  containerPort: 3000
