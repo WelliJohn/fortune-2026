@@ -1,0 +1,38 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+        cache-dependency-path: fortune-app/frontend/package-lock.json
+    
+    - name: Install dependencies
+      run: |
+        cd fortune-app/frontend
+        npm ci
+    
+    - name: Run linter
+      run: |
+        cd fortune-app/frontend
+        # 这里可以添加代码检查命令
+        echo "Running frontend lint..."
+    
+    - name: Run tests
+      run: |
+        cd fortune-app/frontend
+        # 这里可以添加前端测试命令
+        echo "Running frontend tests..."
